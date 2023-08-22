@@ -2,61 +2,7 @@
 
 A small online shop using the [Vue framework](https://vuejs.org/guide/introduction.html#what-is-vue) and [Pinia store library](https://pinia.vuejs.org/introduction.html#why-should-i-use-pinia).
 
-## Pages
-
-### All Products
-
-This is the home page. It displays every product.
-
-### Product
-
-Displays detailed information about a single product.
-
-Let's you add 1 or more of the item to your cart if there are enough in stock, or add the item to your wishlist.
-
-**Components**
-* Related products
-* Top Products
-
-### Cart
-
-Shows all the products in your cart, and all the products in your wishlist.
-
-Lets you remove products from your cart, or move products between your cart and wishlist.
-
-## Data
-
-```
-type Product = {
-    id: string;
-    name: string;
-    image: string;
-    description: string;
-    category: string;
-    popularity: number;
-    price: number;
-    stock: number;
-}
-
-type CartItem = {
-    productId: string;
-    quantity: number;
-};
-
-type Cart = CartItem[];
-
-type WishListItem = {
-    productId: string;
-};
-
-type WishList = WishListItem[];
-```
-
-### Stores
-
-* Product
-* Cart
-* Wishlist
+Some private documentation about this project can be found at on [drive](https://drive.google.com/drive/folders/1hZqQ-b_XX2n7avIPCkb93cQd2SnaoVz_).
 
 ## create-vue Readme
 
