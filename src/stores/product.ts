@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import type { Ref } from 'vue';
 import { defineStore } from 'pinia';
 
@@ -27,8 +27,13 @@ export const useProductStore = defineStore('product', () => {
 		}
 	]);
 
+	const getProductById = computed(() =>
+		(id: number) => products.value.find(p => p.id === id) ?? null
+	);
+
 	return {
-		products
+		products,
+		getProductById,
 	}
 });
 
