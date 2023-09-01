@@ -11,10 +11,14 @@ const product = productStore.getProductById(id);
 <template>
     <div v-if="product != null">
         <img :src="product.image">
-        <div>${{ product.price }}</div>
-        <div>{{ product.name }}</div>
-        <button :style="{ display: 'block' }">Add to Cart</button>
-        <button :style="{ display: 'block' }">Add to Wishlist</button>
+        <div class="mt-2 mb-2">
+            <div>{{ product.name }}</div>
+            <div class="text-lg font-bold">${{ product.price }}</div>
+        </div>
+        <div class="flex flex-col gap-y-2 text-sm">
+            <button>Add to Cart</button>
+            <button>Add to Wishlist</button>
+        </div>
     </div>
     <div v-if="product == null">
         Product not found.
