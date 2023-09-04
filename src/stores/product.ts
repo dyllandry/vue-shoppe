@@ -24,6 +24,20 @@ export const useProductStore = defineStore('product', () => {
 			name: 'Soccer ball',
 			image: 'https://picsum.photos/200',
 			description: "This soccer ball wants to score!"
+		},
+		{
+			id: 5,
+			price: 4.99,
+			name: 'Tennis Ball',
+			image: 'https://picsum.photos/200',
+			description: "Look how green it is."
+		},
+		{
+			id: 6,
+			price: 20.99,
+			name: 'Bowling ball',
+			image: 'https://picsum.photos/200',
+			description: "This is a big one."
 		}
 	]);
 
