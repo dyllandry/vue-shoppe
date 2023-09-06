@@ -1,19 +1,25 @@
 import { defineStore } from "pinia";
 import { ref, type Ref } from "vue";
 
-export const useCounterStore = defineStore('cart', () => {
+export const useCartStore = defineStore('cart', () => {
     const items: Ref<CartItem[]> = ref([]);
     
     let itemId = 0;
 
+    /** If the item already exists in the cart, the item's quantity will be increased by 1. */
     function addToCart(productId: number, quantity: number = 1) {
-        const cartItem: CartItem = {
-            id: itemId,
-            productId,
-            quantity
+        const existingCartItem = items.value.find(i => i.productId === productId);
+        if (existingCartItem === undefined) {
+            const newCartItem: CartItem = {
+                id: itemId,
+                productId,
+                quantity
+            }
+            items.value.push(newCartItem);
+            itemId++;
+        } else {
+            changeQuantity(existingCartItem.id, existingCartItem.quantity + 1);
         }
-        items.value.push(cartItem);
-        itemId++;
     }
 
     function removeFromCart(id: number) {

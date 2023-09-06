@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useProductStore } from '@/stores/product';
+import { useCartStore } from '@/stores/cart';
 
 const { id } = defineProps<{ id: number }>();
 
 const productStore = useProductStore();
 
 const product = productStore.getProductById(id);
+
+const { addToCart } = useCartStore();
 </script>
 
 <template>
@@ -16,7 +19,7 @@ const product = productStore.getProductById(id);
             <div class="text-lg font-bold">${{ product.price }}</div>
         </div>
         <div class="flex flex-col gap-y-2 text-sm">
-            <button>Add to Cart</button>
+            <button @click="addToCart(product.id)">Add to Cart</button>
             <button>Add to Wishlist</button>
         </div>
     </div>
