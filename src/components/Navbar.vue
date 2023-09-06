@@ -12,7 +12,7 @@ import { RouterLink } from 'vue-router'
             <RouterLink :to="{ name: 'home' }">Products</RouterLink>
         </div>
         <div class="grow">
-            <RouterLink :to="{ name: 'home' }">Cart</RouterLink>
+            <RouterLink :to="{ name: 'cart' }">Cart</RouterLink>
         </div>
         <div class="grow">
             <RouterLink :to="{ name: 'home' }">Wishlist</RouterLink>
