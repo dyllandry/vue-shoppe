@@ -13,4 +13,10 @@
             rounded px-2
             border-slate-400
     }
+
+    .price {
+        @apply
+            text-lg
+            font-bold
+    }
 }

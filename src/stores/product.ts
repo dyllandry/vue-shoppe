@@ -42,7 +42,13 @@ export const useProductStore = defineStore('product', () => {
 	]);
 
 	const getProductById = computed(() =>
-		(id: number) => products.value.find(p => p.id === id) ?? null
+		(id: number) => {
+			const product = products.value.find(p => p.id === id);
+			if (product === undefined) {
+				throw Error(`Product with id ${id} not found.`);
+			}
+			return product;
+		}
 	);
 
 	return {

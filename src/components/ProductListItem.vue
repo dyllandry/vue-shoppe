@@ -16,7 +16,7 @@ const { addToCart } = useCartStore();
         <img :src="product.image">
         <div class="mt-2 mb-2">
             <div>{{ product.name }}</div>
-            <div class="text-lg font-bold">${{ product.price }}</div>
+            <div class="price">${{ product.price }}</div>
         </div>
         <div class="flex flex-col gap-y-2 text-sm">
             <button @click="addToCart(product.id)">Add to Cart</button>

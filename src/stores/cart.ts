@@ -6,6 +6,16 @@ export const useCartStore = defineStore('cart', () => {
     
     let itemId = 0;
 
+	const getCartItemById = computed(() =>
+		(id: number) => {
+			const cartItem = items.value.find(item => item.id === id);
+			if (cartItem === undefined) {
+				throw Error(`Cart item with id ${id} not found.`);
+			}
+            return cartItem;
+		}
+	);
+
     /** If the item already exists in the cart, the item's quantity will be increased by 1. */
     function addToCart(productId: number, quantity: number = 1) {
         const existingCartItem = items.value.find(i => i.productId === productId);
@@ -27,7 +37,7 @@ export const useCartStore = defineStore('cart', () => {
         if (cartItemIndex === -1) {
             throw `Can't remove cart item with id ${id} from cart, cart item not found.`;
         }
-        items.value.splice(cartItemIndex);
+        items.value.splice(cartItemIndex, 1);
     }
 
     function changeQuantity(id: number, quantity: number) {
@@ -42,7 +52,7 @@ export const useCartStore = defineStore('cart', () => {
         return items.value.reduce((acc, item) => acc + item.quantity, 0);
     });
 
-    return { items, addToCart, removeFromCart, changeQuantity, quantityInCart };
+    return { items, getCartItemById, addToCart, removeFromCart, changeQuantity, quantityInCart };
 });
 
 export type CartItem = {
