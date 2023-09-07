@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart';
+import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router'
+
+const cartStore = useCartStore();
+const { quantityInCart } = storeToRefs(cartStore);
 
 </script>
 
@@ -12,7 +17,12 @@ import { RouterLink } from 'vue-router'
             <RouterLink :to="{ name: 'home' }">Products</RouterLink>
         </div>
         <div class="grow">
-            <RouterLink :to="{ name: 'cart' }">Cart</RouterLink>
+            <RouterLink :to="{ name: 'cart' }">
+                <span>Cart</span>
+                <span v-if="quantityInCart > 0" class="ml-1">
+                    ({{ quantityInCart }})
+                </span>
+            </RouterLink>
         </div>
         <div class="grow">
             <RouterLink :to="{ name: 'home' }">Wishlist</RouterLink>

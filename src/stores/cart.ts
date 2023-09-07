@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, type Ref } from "vue";
+import { computed, ref, type Ref } from "vue";
 
 export const useCartStore = defineStore('cart', () => {
     const items: Ref<CartItem[]> = ref([]);
@@ -38,7 +38,11 @@ export const useCartStore = defineStore('cart', () => {
         cartItem.quantity = quantity;
     }
 
-    return { items, addToCart, removeFromCart, changeQuantity };
+    const quantityInCart = computed(() => {
+        return items.value.reduce((acc, item) => acc + item.quantity, 0);
+    });
+
+    return { items, addToCart, removeFromCart, changeQuantity, quantityInCart };
 });
 
 export type CartItem = {
