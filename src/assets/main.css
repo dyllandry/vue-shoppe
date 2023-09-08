@@ -3,20 +3,18 @@
 @tailwind utilities;
 
 @layer utilities {
-    button {
-        @apply
-            py-1
+  button {
+    @apply py-1
             bg-slate-300
             hover:bg-slate-400
             active:bg-slate-300
             border
             rounded px-2
-            border-slate-400
-    }
+            border-slate-400;
+  }
 
-    .price {
-        @apply
-            text-lg
-            font-bold
-    }
+  .price {
+    @apply text-lg
+            font-bold;
+  }
 }
