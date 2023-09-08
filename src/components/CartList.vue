@@ -10,5 +10,6 @@ const { items } = storeToRefs(cartStore);
 <template>
   <div class="flex flex-col gap-y-12">
     <CartListItem v-for="item in items" :key="item.id" :id="item.id" />
+    <div v-if="items.length === 0">Your cart is empty.</div>
   </div>
 </template>

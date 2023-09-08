@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
-import { RouterLink } from "vue-router";
 
 const cartStore = useCartStore();
 const { quantityInCart } = storeToRefs(cartStore);
@@ -10,10 +9,10 @@ const { quantityInCart } = storeToRefs(cartStore);
 <template>
   <div class="flex items-end mt-2 mb-4">
     <div class="text-xl grow-[2]">
-      <RouterLink :to="{ name: 'home' }">Vue Shoppe</RouterLink>
+      <RouterLink :to="{ name: 'products' }">Vue Shoppe</RouterLink>
     </div>
     <div class="grow">
-      <RouterLink :to="{ name: 'home' }">Products</RouterLink>
+      <RouterLink :to="{ name: 'products' }">Products</RouterLink>
     </div>
     <div class="grow">
       <RouterLink :to="{ name: 'cart' }">
@@ -24,7 +23,7 @@ const { quantityInCart } = storeToRefs(cartStore);
       </RouterLink>
     </div>
     <div class="grow">
-      <RouterLink :to="{ name: 'home' }">Wishlist</RouterLink>
+      <RouterLink :to="{ name: 'products' }">Wishlist</RouterLink>
     </div>
   </div>
 </template>

@@ -24,10 +24,16 @@ function handleAddToCart(productId: number) {
 
 <template>
   <div v-if="product != null">
-    <img :src="product.image" />
+    <RouterLink :to="{ name: 'product', params: { id } }">
+      <img :src="product.image" />
+    </RouterLink>
     <div class="mt-2 mb-2">
-      <div>{{ product.name }}</div>
-      <div class="price">${{ product.price }}</div>
+      <RouterLink :to="{ name: 'product', params: { id } }">
+        <div>{{ product.name }}</div>
+      </RouterLink>
+      <RouterLink :to="{ name: 'product', params: { id } }">
+        <div class="price">${{ product.price }}</div>
+      </RouterLink>
     </div>
     <div class="flex flex-col gap-y-2 text-sm">
       <button @click="handleAddToCart(product.id)">Add to Cart</button>

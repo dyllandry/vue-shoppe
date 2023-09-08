@@ -20,11 +20,17 @@ const product = productStore.getProductById(cartItem.productId);
 
 <template>
   <div class="flex">
-    <img :src="product.image" class="mr-4" />
+    <RouterLink :to="{ name: 'product', params: { id } }">
+      <img :src="product.image" class="mr-4" />
+    </RouterLink>
     <div class="flex flex-col gap-y-2">
       <div>
-        <div>{{ product.name }}</div>
-        <div class="price">${{ product.price }}</div>
+        <RouterLink :to="{ name: 'product', params: { id } }">
+          <div>{{ product.name }}</div>
+        </RouterLink>
+        <RouterLink :to="{ name: 'product', params: { id } }">
+          <div class="price">${{ product.price }}</div>
+        </RouterLink>
         <div>
           <span>Qty:</span>
           <select
