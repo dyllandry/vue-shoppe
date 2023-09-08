@@ -1,8 +1,11 @@
+import { ExceedMaxCartItemQuantity } from "@/errors/exceed-max-cart-item-quantity";
 import { defineStore } from "pinia";
 import { computed, ref, type Ref } from "vue";
 
 export const useCartStore = defineStore("cart", () => {
   const items: Ref<CartItem[]> = ref([]);
+
+  const MAX_QUANTITY_PER_ITEM: Readonly<number> = 5;
 
   let itemId = 0;
 
@@ -38,12 +41,24 @@ export const useCartStore = defineStore("cart", () => {
     items.value.splice(cartItemIndex, 1);
   }
 
+  /** If the quantity is 0, the item will be removed from the cart. */
   function changeQuantity(id: number, quantity: number) {
     const cartItem = items.value.find((i) => i.id === id);
     if (cartItem === undefined) {
       throw `Cannot change quantity of cart item with id ${id}, cart item not found.`;
     }
-    cartItem.quantity = quantity;
+
+    if (quantity > MAX_QUANTITY_PER_ITEM) {
+      throw new ExceedMaxCartItemQuantity(
+        `Cannot set quantity of cart item with id ${id} to ${quantity} because quantity exceeds max quantity per item of ${MAX_QUANTITY_PER_ITEM}.`
+      );
+    }
+
+    if (quantity === 0) {
+      removeFromCart(id);
+    } else {
+      cartItem.quantity = quantity;
+    }
   }
 
   const quantityInCart = computed(() => {

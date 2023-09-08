@@ -8,6 +8,12 @@ const cartStore = useCartStore();
 const cartItem = cartStore.getCartItemById(id);
 const { removeFromCart } = cartStore;
 
+function handleChangeQuantity(event: Event) {
+  const { value: selectValue } = event.target as HTMLSelectElement;
+  const newQuantity = parseInt(selectValue);
+  cartStore.changeQuantity(id, newQuantity);
+}
+
 const productStore = useProductStore();
 const product = productStore.getProductById(cartItem.productId);
 </script>
@@ -19,7 +25,19 @@ const product = productStore.getProductById(cartItem.productId);
       <div>
         <div>{{ product.name }}</div>
         <div class="price">${{ product.price }}</div>
-        <div>Qty: {{ cartItem.quantity }}</div>
+        <div>
+          <span>Qty:</span>
+          <select
+            class="ml-2"
+            :value="cartItem.quantity"
+            @change="handleChangeQuantity"
+          >
+            <option value="0">0 (remove)</option>
+            <option v-for="quantity in 5" :value="quantity" :key="quantity">
+              {{ quantity }}
+            </option>
+          </select>
+        </div>
       </div>
       <div class="flex flex-col gap-y-2">
         <button @click="removeFromCart(id)">Remove from Cart</button>
