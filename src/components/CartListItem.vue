@@ -20,18 +20,18 @@ const product = productStore.getProductById(cartItem.productId);
 
 <template>
   <div class="flex">
-    <RouterLink :to="{ name: 'product', params: { id } }">
+    <RouterLink :to="{ name: 'product', params: { id: product.id } }">
       <img :src="product.image" class="mr-4" />
     </RouterLink>
     <div class="flex flex-col gap-y-2">
       <div>
-        <RouterLink :to="{ name: 'product', params: { id } }">
+        <RouterLink :to="{ name: 'product', params: { id: product.id } }">
           <div>{{ product.name }}</div>
         </RouterLink>
-        <RouterLink :to="{ name: 'product', params: { id } }">
+        <RouterLink :to="{ name: 'product', params: { id: product.id } }">
           <div class="price">${{ product.price }}</div>
         </RouterLink>
-        <div>
+        <div class="text-sm">
           <span>Qty:</span>
           <select
             class="ml-2"
@@ -45,7 +45,7 @@ const product = productStore.getProductById(cartItem.productId);
           </select>
         </div>
       </div>
-      <div class="flex flex-col gap-y-2">
+      <div class="flex flex-col gap-y-2 text-sm">
         <button @click="removeFromCart(id)">Remove from Cart</button>
         <button>Move to Wishlist</button>
       </div>

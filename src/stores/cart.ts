@@ -17,6 +17,11 @@ export const useCartStore = defineStore("cart", () => {
     return cartItem;
   });
 
+  const findCartItemByProductId = computed(() => (productId: number) => {
+    const cartItem = items.value.find((item) => item.productId === productId);
+    return cartItem ?? null;
+  });
+
   /** If the item already exists in the cart, the item's quantity will be increased by 1. */
   function addToCart(productId: number, quantity: number = 1) {
     const existingCartItem = items.value.find((i) => i.productId === productId);
@@ -68,6 +73,7 @@ export const useCartStore = defineStore("cart", () => {
   return {
     items,
     getCartItemById,
+    findCartItemByProductId,
     addToCart,
     removeFromCart,
     changeQuantity,
