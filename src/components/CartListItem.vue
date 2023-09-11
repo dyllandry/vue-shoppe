@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
 import { useProductStore } from "@/stores/product";
+import AddToCart from "@/components/AddToCart.vue";
+import AddToWishlist from "@/components/AddToWishlist.vue";
 
 const { id } = defineProps<{ id: number }>();
 
 const cartStore = useCartStore();
 const cartItem = cartStore.getCartItemById(id);
-const { removeFromCart } = cartStore;
 
 function handleChangeQuantity(event: Event) {
   const { value: selectValue } = event.target as HTMLSelectElement;
@@ -46,8 +47,8 @@ const product = productStore.getProductById(cartItem.productId);
         </div>
       </div>
       <div class="flex flex-col gap-y-2 text-sm">
-        <button @click="removeFromCart(id)">Remove from Cart</button>
-        <button>Move to Wishlist</button>
+        <AddToCart :id="cartItem.productId" />
+        <AddToWishlist :id="cartItem.productId" />
       </div>
     </div>
   </div>

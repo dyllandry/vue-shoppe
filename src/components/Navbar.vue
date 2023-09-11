@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cart";
+import { useWishlistStore } from "@/stores/wishlist";
 import { storeToRefs } from "pinia";
 
 const cartStore = useCartStore();
 const { quantityInCart } = storeToRefs(cartStore);
+
+const wishlistStore = useWishlistStore();
+const { numItemsInWishlist } = storeToRefs(wishlistStore);
 </script>
 
 <template>
@@ -23,7 +27,12 @@ const { quantityInCart } = storeToRefs(cartStore);
       </RouterLink>
     </div>
     <div class="grow">
-      <RouterLink :to="{ name: 'products' }">Wishlist</RouterLink>
+      <RouterLink :to="{ name: 'products' }">
+        <span>Wishlist</span>
+        <span v-if="numItemsInWishlist > 0" class="ml-1"
+          >({{ numItemsInWishlist }})</span
+        >
+      </RouterLink>
     </div>
   </div>
 </template>
