@@ -27,7 +27,7 @@ const { numItemsInWishlist } = storeToRefs(wishlistStore);
       </RouterLink>
     </div>
     <div class="grow">
-      <RouterLink :to="{ name: 'products' }">
+      <RouterLink :to="{ name: 'wishlist' }">
         <span>Wishlist</span>
         <span v-if="numItemsInWishlist > 0" class="ml-1"
           >({{ numItemsInWishlist }})</span

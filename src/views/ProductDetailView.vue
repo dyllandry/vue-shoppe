@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { useProductStore } from "@/stores/product";
@@ -6,10 +7,12 @@ import AddToCart from "@/components/AddToCart.vue";
 import AddToWishlist from "@/components/AddToWishlist.vue";
 
 const route = useRoute();
+const { getProductById } = useProductStore();
 
-const productId = parseInt(route.params.id as string);
-const productStore = useProductStore();
-const product = productStore.getProductById(productId);
+const product = computed(() => {
+  const id = parseInt(route.params.id as string);
+  return getProductById(id);
+});
 </script>
 
 <template>
@@ -22,8 +25,8 @@ const product = productStore.getProductById(productId);
         <p>{{ product.description }}</p>
       </div>
       <div class="flex flex-col max-w-[200px] gap-2 text-sm">
-        <AddToCart :id="productId" />
-        <AddToWishlist :id="productId" />
+        <AddToCart :id="product.id" />
+        <AddToWishlist :id="product.id" />
       </div>
     </div>
   </div>

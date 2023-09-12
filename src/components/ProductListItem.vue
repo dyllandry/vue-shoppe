@@ -11,9 +11,11 @@ const product = productStore.getProductById(id);
 
 <template>
   <div v-if="product != null">
-    <RouterLink :to="{ name: 'product', params: { id } }">
-      <img :src="product.image" />
-    </RouterLink>
+    <div class="w-[200px] h-[200px]">
+      <RouterLink :to="{ name: 'product', params: { id } }">
+        <img :src="product.image" />
+      </RouterLink>
+    </div>
     <div class="mt-2 mb-2">
       <div>
         <RouterLink :to="{ name: 'product', params: { id } }">

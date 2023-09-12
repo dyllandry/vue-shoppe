@@ -41,5 +41,5 @@ const handleButtonClick = () => {
 </script>
 
 <template>
-  <button @click="handleButtonClick">{{ buttonText }}</button>
+  <button @click="handleButtonClick" class="text-sm">{{ buttonText }}</button>
 </template>

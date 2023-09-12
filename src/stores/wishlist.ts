@@ -11,6 +11,14 @@ export const useWishlistStore = defineStore("wishlist", () => {
 
   let wishlistId = 0;
 
+  const getWishlistItemById = computed(() => (id: number) => {
+    const wishlistItem = items.value.find((i) => i.id === id);
+    if (wishlistItem === undefined) {
+      throw Error(`Wishlist item with id ${id} not found.`);
+    }
+    return wishlistItem;
+  });
+
   function addToWishlist(productId: number) {
     let existingItem = items.value.find((i) => i.productId === productId);
     if (!existingItem) {
@@ -43,6 +51,7 @@ export const useWishlistStore = defineStore("wishlist", () => {
     items,
     addToWishlist,
     removeFromWishlist,
+    getWishlistItemById,
     findWishlistItemByProductId,
     numItemsInWishlist,
   };
